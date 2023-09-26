@@ -7,7 +7,7 @@ import {Observable, of, throwError} from "rxjs";
 })
 export class AuthService {
 
-    constructor(private route: Router) {
+    constructor(private router: Router) {
     }
 
     setToken(token: string) {
@@ -30,4 +30,7 @@ export class AuthService {
         return throwError(() => new Error('Failed login'))
     }
 
+    logOut(){
+        this.router.navigate(['login'])
+    }
 }
