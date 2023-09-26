@@ -4,13 +4,21 @@ import {
   RouterStateSnapshot,
   ActivatedRouteSnapshot
 } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import {delay, Observable, of} from 'rxjs';
+import {User} from "../user";
+import {AdminService} from "../services/admin.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class UsersResolver implements Resolve<boolean> {
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    return of(true);
+
+export class UsersResolver implements Resolve<User[]> {
+
+  constructor(private adminService: AdminService) {
+  }
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<User[]> {
+    return this.adminService.getPersonalList().pipe(
+        delay(2000)
+    )
   }
 }
