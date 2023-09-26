@@ -27,5 +27,9 @@ export class LoginComponent implements OnInit{
       'email': new FormControl(''),
       'password': new FormControl(''),
     })
+    if (this.authService.isLoggedIn()){
+      this.router.navigate(['admin'])
+    }
   }
+
 }
